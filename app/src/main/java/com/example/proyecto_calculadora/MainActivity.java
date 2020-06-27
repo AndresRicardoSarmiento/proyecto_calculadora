@@ -28,6 +28,25 @@ public class MainActivity extends AppCompatActivity {
         edit_num1 = findViewById(R.id.num1);
         edit_num2 = findViewById(R.id.num2);
         
+        
+        btn_suma = findViewById(R.id.button_suma);
+        btn_suma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text_respuesta.setText(suma(Double.parseDouble(edit_num1.getText().toString()), Double.parseDouble(edit_num2.getText().toString()))+"");
+
+            }
+        });
+
+
+        btn_resta = findViewById(R.id.button_resta);
+        btn_resta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text_respuesta.setText(resta (Double.parseDouble(edit_num1.getText().toString()), Double.parseDouble(edit_num2.getText().toString()))+"");
+            }
+        });
+
 
 
     }
