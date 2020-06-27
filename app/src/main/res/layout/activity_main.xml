@@ -32,5 +32,50 @@
         android:hint="Escribir el segundo numero"
         android:inputType="number" />
 
+<TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TableRow
+            android:layout_width="222dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/button_suma"
+                android:layout_width="145dp"
+                android:layout_height="match_parent"
+                android:text="+"
+                android:textSize="36sp" />
+
+            <Button
+                android:id="@+id/button_resta"
+                android:layout_width="136dp"
+                android:layout_height="106dp"
+                android:text="-"
+                android:textSize="36sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_division"
+                android:layout_width="152dp"
+                android:layout_height="118dp"
+                android:text="/"
+                android:textSize="36sp" />
+
+            <Button
+                android:id="@+id/button_multiplicacion"
+                android:layout_width="123dp"
+                android:layout_height="match_parent"
+                android:text="X"
+                android:textSize="36sp" />
+        </TableRow>
+
+    </TableLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
