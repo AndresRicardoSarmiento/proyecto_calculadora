@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         text_respuesta = findViewById(R.id.Respuesta);
         edit_num1 = findViewById(R.id.num1);
         edit_num2 = findViewById(R.id.num2);
-        
+
 
 
     }
