@@ -13,13 +13,13 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private Button btn_suma;
     private Button btn_resta;
-    private Button btn_division;
     private Button btn_multiplicacion;
+    private Button btn_division;
     private Button btn_total;
     private TextView text_respuesta;
     private EditText edit_num1;
-    private Double operando1;
-    private Double operando2;
+    private Double operando1 = null;
+    private Double operando2 = null;
     private double resultado = 0;
     private String lastOperation = "";
 
@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (numeroIngresado.length() > 0) {
                     operando2 = Double.parseDouble(numeroIngresado);
+                } else {
+                    lastOperation = "suma";
                 }
 
                 if (lastOperation.isEmpty()) {
@@ -60,12 +62,16 @@ public class MainActivity extends AppCompatActivity {
                 String numeroIngresado = edit_num1.getText().toString();
 
                 if (numeroIngresado.length() > 0 && operando1 == null) {
+                    // Apenas es la primera operación a realizar, le restamos 0, para que
+                    // se mantenga el miso número que ingresó.
                     operando1 = Double.parseDouble(numeroIngresado);
                     operando2 = 0.0;
                 } else if (numeroIngresado.length() > 0) {
+                    // Se realiza la operación normal, el último resultado menos el ingresado.
                     operando1 = resultado;
                     operando2 = Double.parseDouble(numeroIngresado);
-                } else {
+                } else { // El usuario solo presionó el operador.
+                    lastOperation = "resta";
                     operando1 = resultado;
                     operando2 = 0.0;
                 }
@@ -80,22 +86,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_multiplicacion = findViewById(R.id.button_multiplicacion);
+        btn_multiplicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String numeroIngresado = edit_num1.getText().toString();
+
+                if (numeroIngresado.length() > 0 && operando1 == null) {
+                    // Apenas es la primera operación a realizar, lo multiplicamos por 1,
+                    // para que se mantenga el miso número que ingresó.
+                    operando1 = 1.0;
+                    operando2 = Double.parseDouble(numeroIngresado);
+                } else if (numeroIngresado.length() > 0) {
+                    // Se realiza la operación normal, el último resultado por el ingresado.
+                    operando1 = resultado;
+                    operando2 = Double.parseDouble(numeroIngresado);
+                } else { // El usuario solo presionó el operador.
+                    lastOperation = "multiplicacion";
+                    operando1 = resultado;
+                    operando2 = 1.0;
+                }
+
+                if (lastOperation.isEmpty()) {
+                    lastOperation = "multiplicacion";
+                }
+
+                calcular(operando1, operando2, lastOperation);
+                lastOperation = "multiplicacion";
+                clearInput();
+            }
+        });
+
         btn_division = findViewById(R.id.button_division);
         btn_division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 text_respuesta.setText(String.valueOf(resultado));
                 lastOperation = "division";
-                clearInput();
-            }
-        });
-
-        btn_multiplicacion = findViewById(R.id.button_multiplicacion);
-        btn_multiplicacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                text_respuesta.setText(String.valueOf(resultado));
-                lastOperation = "multiplicacion";
                 clearInput();
             }
         });
