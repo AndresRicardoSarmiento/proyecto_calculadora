@@ -12,25 +12,20 @@
         android:id="@+id/Respuesta"
         android:layout_width="match_parent"
         android:layout_height="37dp"
-        android:text="0"
         android:textColor="#882020"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_gravity="end"
+        android:textAlignment="textEnd" />
 
     <EditText
         android:id="@+id/num1"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:ems="10"
-        android:hint="Escribir el primer numero"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/num2"
-        android:layout_width="match_parent"
-        android:layout_height="81dp"
-        android:ems="10"
-        android:hint="Escribir el segundo numero"
-        android:inputType="number" />
+        android:hint="0"
+        android:inputType="numberDecimal|numberSigned"
+        android:layout_gravity="end"
+        android:textAlignment="textEnd" />
 
 <TableLayout
         android:layout_width="wrap_content"
@@ -73,6 +68,18 @@
                 android:layout_width="123dp"
                 android:layout_height="match_parent"
                 android:text="X"
+                android:textSize="36sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_total"
+                android:layout_width="match_parent"
+                android:layout_height="118dp"
+                android:text="="
                 android:textSize="36sp" />
         </TableRow>
 
