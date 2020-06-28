@@ -136,22 +136,7 @@ public class MainActivity extends AppCompatActivity {
         btn_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (lastOperation) {
-                    case "Suma" :
-                        resultado += Double.parseDouble(edit_num1.getText().toString());
-
-                        break;
-                    case "Resta" :
-                        resultado -= Double.parseDouble(edit_num1.getText().toString());
-
-                        break;
-                    case "División" :
-                        break;
-                    case "Multiplicacion" :
-                        break;
-                }
-
-                text_respuesta.setText(String.valueOf(resultado));
+              
                 clearInput();
             }
         });
@@ -163,19 +148,19 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("operando 2: [" + operando2 + "]");
 
         switch (operacion) {
-            case "suma" :
+            case "Suma" :
                 resultado = operando1 + operando2;
 
                 break;
-            case "resta" :
+            case "Resta" :
                 resultado = operando1 - operando2;
 
                 break;
-            case "multiplicacion" :
+            case "Multiplicación" :
                 resultado = operando1 * operando2;
 
                 break;
-            case "division" :
+            case "División" :
                 if (operando2 != 0) {
                     resultado = operando1 / operando2;
                 }
