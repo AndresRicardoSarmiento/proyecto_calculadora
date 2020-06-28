@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_multiplicacion;
     private Button btn_division;
     private Button btn_total;
+    private TextView _operacion;
     private TextView text_respuesta;
     private EditText edit_num1;
     private Double operando1 = null;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         text_respuesta = findViewById(R.id.Respuesta);
         edit_num1 = findViewById(R.id.num1);
-
+        _operacion = findViewById(R.id._operacion);
         btn_suma = findViewById(R.id.button_suma);
         btn_suma.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,15 +43,16 @@ public class MainActivity extends AppCompatActivity {
                 if (numeroIngresado.length() > 0) {
                     operando2 = Double.parseDouble(numeroIngresado);
                 } else {
-                    lastOperation = "suma";
+                    lastOperation = "Suma";
                 }
 
                 if (lastOperation.isEmpty()) {
-                    lastOperation = "suma";
+                    lastOperation = "Suma";
                 }
 
                 calcular(operando1, operando2, lastOperation);
-                lastOperation = "suma";
+                lastOperation = "Suma";
+                asignarOperacion(lastOperation);
                 clearInput();
             }
         });
@@ -71,17 +73,18 @@ public class MainActivity extends AppCompatActivity {
                     operando1 = resultado;
                     operando2 = Double.parseDouble(numeroIngresado);
                 } else { // El usuario solo presionó el operador.
-                    lastOperation = "resta";
+                    lastOperation = "Resta";
                     operando1 = resultado;
                     operando2 = 0.0;
                 }
 
                 if (lastOperation.isEmpty()) {
-                    lastOperation = "resta";
+                    lastOperation = "Resta";
                 }
 
                 calcular(operando1, operando2, lastOperation);
-                lastOperation = "resta";
+                lastOperation = "Resta";
+                asignarOperacion(lastOperation);
                 clearInput();
             }
         });
@@ -102,17 +105,18 @@ public class MainActivity extends AppCompatActivity {
                     operando1 = resultado;
                     operando2 = Double.parseDouble(numeroIngresado);
                 } else { // El usuario solo presionó el operador.
-                    lastOperation = "multiplicacion";
+                    lastOperation = "Multiplicación";
                     operando1 = resultado;
                     operando2 = 1.0;
                 }
 
                 if (lastOperation.isEmpty()) {
-                    lastOperation = "multiplicacion";
+                    lastOperation = "Multiplicación";
                 }
 
                 calcular(operando1, operando2, lastOperation);
-                lastOperation = "multiplicacion";
+                lastOperation = "Multiplicación";
+                asignarOperacion(lastOperation);
                 clearInput();
             }
         });
@@ -122,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 text_respuesta.setText(String.valueOf(resultado));
-                lastOperation = "division";
+                lastOperation = "División";
+                asignarOperacion(lastOperation);
                 clearInput();
             }
         });
@@ -132,17 +137,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 switch (lastOperation) {
-                    case "suma" :
+                    case "Suma" :
                         resultado += Double.parseDouble(edit_num1.getText().toString());
 
                         break;
-                    case "resta" :
+                    case "Resta" :
                         resultado -= Double.parseDouble(edit_num1.getText().toString());
 
                         break;
-                    case "division" :
+                    case "División" :
                         break;
-                    case "multiplicacion" :
+                    case "Multiplicacion" :
                         break;
                 }
 
@@ -189,5 +194,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void clearInput() {
         edit_num1.setText("");
+    }
+
+    private void asignarOperacion(String operacion){
+        _operacion.setText(operacion);
     }
 }
