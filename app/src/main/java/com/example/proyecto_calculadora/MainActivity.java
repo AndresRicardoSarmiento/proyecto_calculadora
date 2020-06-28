@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView _operacion;
     private TextView text_respuesta;
     private EditText edit_num1;
-    private Double operando1 = null;
-    private Double operando2 = null;
+    private Double operando1 = 0.0;
+    private Double operando2 = 0.0;
     private double resultado = 0;
     private String lastOperation = "";
 
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         text_respuesta = findViewById(R.id.Respuesta);
         edit_num1 = findViewById(R.id.num1);
         _operacion = findViewById(R.id._operacion);
@@ -136,7 +135,9 @@ public class MainActivity extends AppCompatActivity {
         btn_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              
+                System.out.println("Se realizará la " + lastOperation + " de los siguientes números");
+                System.out.println("operando 1: [" + operando1 + "]");
+                System.out.println("operando 2: [" + operando2 + "]");
                 clearInput();
             }
         });
