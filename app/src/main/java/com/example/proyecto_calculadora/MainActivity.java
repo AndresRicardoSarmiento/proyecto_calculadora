@@ -100,10 +100,6 @@ public class MainActivity extends AppCompatActivity {
         btn_division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                text_respuesta.setText(String.valueOf(resultado));
-                lastOperation = "División";
-                asignarOperacion(lastOperation);
-
                 String numeroIngresado = edit_num1.getText().toString();
 
                 if (numeroIngresado.length() > 0 && operando1 == null) {
@@ -136,10 +132,14 @@ public class MainActivity extends AppCompatActivity {
         btn_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Se realizará la " + lastOperation + " de los siguientes números");
-                System.out.println("operando 1: [" + operando1 + "]");
-                System.out.println("operando 2: [" + operando2 + "]");
-                clearInput();
+                String numeroIngresado = edit_num1.getText().toString();
+
+                if (numeroIngresado.length() > 0 && operando1 != null) {
+                    operando1 = resultado;
+                    operando2 = Double.parseDouble(numeroIngresado);
+                    calcular(operando1, operando2, lastOperation);
+                    clearInput();
+                }
             }
         });
     }
@@ -171,10 +171,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcular(double operando1, double operando2, String operacion) {
-        System.out.println("Se realizará la " + operacion + " de los siguientes números");
-        System.out.println("operando 1: [" + operando1 + "]");
-        System.out.println("operando 2: [" + operando2 + "]");
-
         switch (operacion) {
             case "Suma" :
                 resultado = operando1 + operando2;
