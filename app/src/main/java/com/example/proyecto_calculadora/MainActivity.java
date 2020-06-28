@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView _operacion;
     private TextView text_respuesta;
     private EditText edit_num1;
-    private Double operando1 = 0.0;
-    private Double operando2 = 0.0;
+    private Double operando1 = null;
+    private Double operando2 = null;
     private double resultado = 0;
     private String lastOperation = "";
 
@@ -31,31 +31,7 @@ public class MainActivity extends AppCompatActivity {
         text_respuesta = findViewById(R.id.Respuesta);
         edit_num1 = findViewById(R.id.num1);
         _operacion = findViewById(R.id._operacion);
-        btn_suma = findViewById(R.id.button_suma);
-        btn_suma.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String numeroIngresado = edit_num1.getText().toString();
-                operando1 = resultado;
-                operando2 = 0.0;
-
-                if (numeroIngresado.length() > 0) {
-                    operando2 = Double.parseDouble(numeroIngresado);
-                } else {
-                    lastOperation = "Suma";
-                }
-
-                if (lastOperation.isEmpty()) {
-                    lastOperation = "Suma";
-                }
-
-                calcular(operando1, operando2, lastOperation);
-                lastOperation = "Suma";
-                asignarOperacion(lastOperation);
-                clearInput();
-            }
-        });
-
+        addListenerSuma();
         btn_resta = findViewById(R.id.button_resta);
         btn_resta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +139,32 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Se realizará la " + lastOperation + " de los siguientes números");
                 System.out.println("operando 1: [" + operando1 + "]");
                 System.out.println("operando 2: [" + operando2 + "]");
+                clearInput();
+            }
+        });
+    }
+
+    public void addListenerSuma(){
+        btn_suma = findViewById(R.id.button_suma);
+        btn_suma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                operando1 = resultado;
+                operando2 = 0.0;
+                String numeroIngresado = edit_num1.getText().toString();
+                if (numeroIngresado.length() > 0) {
+                    operando2 = Double.parseDouble(numeroIngresado);
+                } else {
+                    lastOperation = "Suma";
+                }
+
+                if (lastOperation.isEmpty()) {
+                    lastOperation = "Suma";
+                }
+
+                calcular(operando1, operando2, lastOperation);
+                lastOperation = "Suma";
+                asignarOperacion(lastOperation);
                 clearInput();
             }
         });
