@@ -128,6 +128,31 @@ public class MainActivity extends AppCompatActivity {
                 text_respuesta.setText(String.valueOf(resultado));
                 lastOperation = "División";
                 asignarOperacion(lastOperation);
+
+                String numeroIngresado = edit_num1.getText().toString();
+
+                if (numeroIngresado.length() > 0 && operando1 == null) {
+                    // Apenas es la primera operación a realizar, lo multiplicamos por 1,
+                    // para que se mantenga el miso número que ingresó.
+                    operando1 = Double.parseDouble(numeroIngresado);
+                    operando2 = 1.0;
+                } else if (numeroIngresado.length() > 0) {
+                    // Se realiza la operación normal, el último resultado por el ingresado.
+                    operando1 = resultado;
+                    operando2 = Double.parseDouble(numeroIngresado);
+                } else { // El usuario solo presionó el operador.
+                    lastOperation = "División";
+                    operando1 = resultado;
+                    operando2 = 1.0;
+                }
+
+                if (lastOperation.isEmpty()) {
+                    lastOperation = "División";
+                }
+
+                calcular(operando1, operando2, lastOperation);
+                lastOperation = "División";
+                asignarOperacion(lastOperation);
                 clearInput();
             }
         });
